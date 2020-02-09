@@ -1,9 +1,10 @@
 import React from 'react';
+import UserList from './pages/UserList';
 
 function App() {
   return (
     <div className="app">
-      <h1>Olá mundo! :p</h1>
+      <UserList></UserList>
     </div>
   );
 }
