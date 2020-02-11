@@ -3,15 +3,29 @@ import Table from '../../components/Table';
 import UserHandler from '../../api/UserHandler';
 import './userlist.scss';
 import {Link} from 'react-router-dom';
+import Pagination from '../../components/Pagination';
 
 export default function UserList(props) {
+  const qtyUsersPerPage = 5;
   const [users, setUsers] = useState([]);
+  const [qtyUsers, setQtyUsers] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    UserHandler().getUsers().then((users) => {
+    const end   = currentPage * qtyUsersPerPage;
+    const start = (currentPage === 1) ? currentPage - 1 : (currentPage - 1) * qtyUsersPerPage;
+    UserHandler().getUsers(start, end).then((resp) => {
+      const {users, total} = resp;
       setUsers(users);
+      setQtyUsers(total);
     });
-  }, []);
+  }, [currentPage]);
+
+  const changePage = function(page){
+    return () => {
+      setCurrentPage(page);
+    }
+  }
  
   return (
     <div className="container">
@@ -41,6 +55,7 @@ export default function UserList(props) {
           })}
         </tbody>
       </Table>
+      <Pagination max={(qtyUsers/qtyUsersPerPage)} onChange={changePage} currentPage={currentPage}/>
     </div>
   )
 }
