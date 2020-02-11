@@ -1,3 +1,41 @@
-.table-bordered {
-  border: 1px solid #ccc;
+*{
+  box-sizing: border-box;
 }
+body{
+  font-family: 'Roboto', sans-serif;
+}
+.align-center{
+  text-align: center !important;
+}
+.container{
+  width: 960px;
+  margin: 0 auto;
+  a{
+    color: #000;
+  }
+}
+.table-bordered {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  thead{
+    tr{
+      th{
+        padding: 12px;
+        text-align: left;
+      }
+    }
+  }
+  tbody{ 
+    tr{
+      &:nth-of-type(2n+1){
+        background-color: rgba(0,0,0,.05);
+      }
+      td{
+        padding: 12px;
+      }
+    }
+  }
+}
+
+
