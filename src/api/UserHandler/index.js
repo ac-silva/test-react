@@ -14,14 +14,20 @@ export default function UserHandler() {
       const endpoint = (start !== -1 && end !== -1) ? `users/?_start=${start}&_end=${end}` : 'users'; 
       return new Promise((resolve, reject) => {
         api.get(endpoint)
-          .then(response => resolve(response.data))
+          .then(response => {
+            resolve({
+              total: response.headers['x-total-count'],
+              users: response.data
+            })
+          })
           .catch(reject);
       });
     },
 
     getUser: function(id){
       return new Promise((resolve, reject) => {
-        this.getUsers().then((users) => {
+        this.getUsers().then((resp) => {
+          const {users} = resp;
           const user = users.find(user => user.id === parseInt(id));
           (user) ? resolve(user) : reject('Usuário não encontrado');
         }).catch(reject);
