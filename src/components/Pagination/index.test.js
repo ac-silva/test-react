@@ -7,7 +7,8 @@ describe('comportamento', () => {
     const {container} = render(
       <Pagination max={2} currentPage={1} onChange={(page) => {}}></Pagination>
     );
-    const marker = container.querySelector('a.active');
-    expect(marker.innerHTML).toEqual(1);
+    
+    const marker = await waitForElement(() => container.querySelector('a.active'));
+    expect(marker.innerText).toEqual("1");
   });
 });
