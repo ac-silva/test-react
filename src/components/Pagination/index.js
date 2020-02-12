@@ -2,7 +2,9 @@ import React from 'react';
 import './pagination.scss';
 
 export default function Pagination(props) {
+
   if(!props.max) return '';
+
   return (
     <div className="pagination">
       <a href="#" onClick={props.onChange(1)} className="first">&laquo;</a>
@@ -20,4 +22,5 @@ export default function Pagination(props) {
       <a href="#" onClick={props.onChange(props.max)} className="last">&raquo;</a>
     </div>
   )
+  
 }
