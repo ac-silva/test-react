@@ -24,6 +24,13 @@ export default function UserView(props) {
               <tr><td>Nome</td><td>{user.name}</td></tr>
               <tr><td>Username</td><td>{user.username}</td></tr>
               <tr><td>Email</td><td>{user.email}</td></tr>
+              <tr><td>Telefone</td><td>{user.phone}</td></tr>
+              <tr><td>Website</td><td>{user.website}</td></tr>
+              <tr>
+                <td>Endereço</td>
+                <td>{user.address.street}, {user.address.suite} - {user.address.city} | {user.address.zipcode}</td>
+              </tr>
+              <tr><td>Empresa</td><td>{user.company.name} ({user.company.catchPhrase}) - {user.company.bs}</td></tr>
             </tbody>
           </Table> :
           (<h3>Usuário não encontrado!</h3>)
