@@ -1,6 +1,6 @@
 import React from 'react';
 import Pagination from './index';
-import { render } from '@testing-library/react';
+import { render, waitForElement } from '@testing-library/react';
 
 describe('comportamento', () => {
   it('renderiza marcador corretamentem na página selecionada', async() => {
